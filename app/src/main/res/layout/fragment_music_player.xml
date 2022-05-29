@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/simple_bg"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".ui.MusicPlayerFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="16dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="0:11"
+                android:textColor="#5CD1DB"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fmp_seek_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <SeekBar
+                android:id="@+id/fmp_seek_bar"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:theme="@style/SeekBarColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="3:11"
+                android:textColor="#5CD1DB"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fmp_seek_bar"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/fmp_song_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="Song Name"
+            android:textAlignment="center"
+            android:textColor="#F4F4F4"
+            android:textSize="22sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="Artist Name"
+            android:textAlignment="center"
+            android:textColor="#B3B3B3"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fmp_play_btn"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/ic_play_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_fast_rewind_btn"
+                app:layout_constraintBottom_toBottomOf="@id/fmp_play_btn"
+                app:layout_constraintEnd_toStartOf="@id/fmp_play_btn"
+                app:layout_constraintTop_toTopOf="@id/fmp_play_btn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/ic_fast_forward_btn"
+                app:layout_constraintBottom_toBottomOf="@id/fmp_play_btn"
+                app:layout_constraintStart_toEndOf="@id/fmp_play_btn"
+                app:layout_constraintTop_toTopOf="@id/fmp_play_btn" />
+
+            <com.gauravk.audiovisualizer.visualizer.BlastVisualizer xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/blast"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                custom:avColor="#CE18DC"
+                custom:avDensity="0.5"
+                custom:avSpeed="normal"
+                custom:avType="outline"
+                custom:avWidth="4dp"
+                custom:layout_constraintBottom_toBottomOf="parent"
+                custom:layout_constraintEnd_toEndOf="parent"
+                custom:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
