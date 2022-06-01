@@ -1,5 +1,7 @@
 package ru.isaev.musicplayertestapp.model
 
+import java.io.Serializable
+
 data class Result(
     val artistId: Int,
     val artistName: String,
@@ -13,7 +15,7 @@ data class Result(
     val collectionName: String,
     val collectionPrice: Double,
     val collectionViewUrl: String,
-    val contentAdvisoryRating: String,
+    val contentAdvisoryRating: String?,
     val country: String,
     val currency: String,
     val discCount: Int,
@@ -33,4 +35,4 @@ data class Result(
     val trackTimeMillis: Int,
     val trackViewUrl: String,
     val wrapperType: String
-)
+): Serializable

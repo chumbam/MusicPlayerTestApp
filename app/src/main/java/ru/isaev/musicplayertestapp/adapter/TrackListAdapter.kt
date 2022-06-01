@@ -49,7 +49,10 @@ class TrackListAdapter : RecyclerView.Adapter<TrackListAdapter.TrackViewHolder>(
         val song = differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this).load(song.artworkUrl100).into(this.findViewById(R.id.rv_music_img))
-            findViewById<TextView>(R.id.rv_track_name).text = song.trackName
+            findViewById<TextView>(R.id.rv_track_name).apply {
+                text = song.trackName
+                isSelected = true
+            }
             findViewById<TextView>(R.id.rv_artist_name).text = song.artistName
             findViewById<TextView>(R.id.rv_song_duration).text = minutes(song.trackTimeMillis)
 

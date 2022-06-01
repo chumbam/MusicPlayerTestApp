@@ -48,16 +48,20 @@ class MusicSearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRV()
+
+        trackAdapter.setOnItemClickListener { song ->
+            val bundle = Bundle().apply {
+                putSerializable("song", song)
+            }
+            findNavController().navigate(
+                R.id.action_FirstFragment_to_SecondFragment,
+                bundle
+            )
+        }
         binding.apply {
             var job: Job? = null
             etSearch.addTextChangedListener {
                 job?.cancel()
-//                if (it.isNullOrEmpty() && it?.length!! > 5){
-//                    job = MainScope().launch {
-//                        delay(Constants.SEARCH_REQUEST_DELAY)
-//                        viewModel.searchForAllMusic(it.toString())
-//                    }
-//                }
                 job = MainScope().launch {
                     delay(Constants.SEARCH_REQUEST_DELAY)
                     it?.let {

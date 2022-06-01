@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/fmp_track_img"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_marginBottom="16dp" />
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/fmp_start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -48,6 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/fmp_end_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -76,6 +79,7 @@
             android:textStyle="italic" />
 
         <TextView
+            android:id="@+id/fmp_artist_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -102,12 +106,13 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/ic_play_btn"
+                android:background="@drawable/ic_pause_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fmp_rewind_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
@@ -117,6 +122,7 @@
                 app:layout_constraintTop_toTopOf="@id/fmp_play_btn" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fmp_forward_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
@@ -125,8 +131,9 @@
                 app:layout_constraintStart_toEndOf="@id/fmp_play_btn"
                 app:layout_constraintTop_toTopOf="@id/fmp_play_btn" />
 
-            <com.gauravk.audiovisualizer.visualizer.BlastVisualizer xmlns:custom="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/blast"
+            <com.gauravk.audiovisualizer.visualizer.BlastVisualizer
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fmp_bv"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 custom:avColor="#CE18DC"
