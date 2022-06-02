@@ -1,16 +1,14 @@
-package ru.isaev.musicplayertestapp.ui
+package ru.isaev.musicplayertestapp.ui.fragment
 
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import androidx.core.os.postDelayed
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,21 +17,20 @@ import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.util.Log.e
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.isaev.musicplayertestapp.R
 import ru.isaev.musicplayertestapp.databinding.FragmentMusicPlayerBinding
 import ru.isaev.musicplayertestapp.model.Result
+import ru.isaev.musicplayertestapp.ui.MainViewModel
 import ru.isaev.musicplayertestapp.utils.Converter
-import java.io.File
 
 class MusicPlayerFragment : Fragment() {
 
     private var _binding: FragmentMusicPlayerBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+    get() = checkNotNull(_binding){ "View binding is not initialized"}
     private val viewModel: MainViewModel by activityViewModels()
     private val args: MusicPlayerFragmentArgs by navArgs()
     lateinit var exoPlayer: ExoPlayer
@@ -50,7 +47,6 @@ class MusicPlayerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val trackInstance = args.song
-        Log.e("TAG", trackInstance.toString())
         setupExoPlayer(trackInstance)
         configSeekBar()
         configVisualization()
@@ -93,9 +89,8 @@ class MusicPlayerFragment : Fragment() {
     private fun configSeekBar() = lifecycleScope.launch (Dispatchers.Main.immediate) {
         val totalDuration = exoPlayer.duration
         var currentPos = 0
-            delay(500)
+            delay(600)
             binding.fmpSeekBar.max = exoPlayer.duration.toInt()
-            Log.e("EndTime", totalDuration.toString())
 
             binding.fmpSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {}
@@ -106,13 +101,11 @@ class MusicPlayerFragment : Fragment() {
                 }
             })
             val endTime = Converter.getMinutes(exoPlayer.duration)
-            Log.e("EndTime", endTime)
             binding.fmpEndTime.text = endTime
 
         while (totalDuration < currentPos) {
             delay(500)
             currentPos = exoPlayer.currentPosition.toInt()
-            Log.e("CurrenPosition", currentPos.toString())
             binding.fmpSeekBar.progress = currentPos
         }
     }

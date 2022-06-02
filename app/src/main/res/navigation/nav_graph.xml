@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="ru.isaev.musicplayertestapp.ui.MusicSearchFragment"
+        android:name="ru.isaev.musicplayertestapp.ui.fragment.MusicSearchFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_music_search">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="ru.isaev.musicplayertestapp.ui.MusicPlayerFragment"
+        android:name="ru.isaev.musicplayertestapp.ui.fragment.MusicPlayerFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_music_player">
 

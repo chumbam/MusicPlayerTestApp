@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import ru.isaev.musicplayertestapp.databinding.ItemSongCellBinding
 import ru.isaev.musicplayertestapp.model.Result
 import ru.isaev.musicplayertestapp.utils.Converter
-import java.util.concurrent.TimeUnit
 
 class TrackListAdapter : RecyclerView.Adapter<TrackListAdapter.TrackViewHolder>() {
 

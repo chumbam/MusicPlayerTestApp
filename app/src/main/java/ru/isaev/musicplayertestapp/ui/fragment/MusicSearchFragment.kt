@@ -1,4 +1,4 @@
-package ru.isaev.musicplayertestapp.ui
+package ru.isaev.musicplayertestapp.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import ru.isaev.musicplayertestapp.R
 import ru.isaev.musicplayertestapp.adapter.TrackListAdapter
 import ru.isaev.musicplayertestapp.databinding.FragmentMusicSearchBinding
+import ru.isaev.musicplayertestapp.ui.MainViewModel
 import ru.isaev.musicplayertestapp.utils.Constants
 import ru.isaev.musicplayertestapp.utils.Resource
 
@@ -60,7 +61,7 @@ class MusicSearchFragment : Fragment() {
         }
         binding.apply {
             var job: Job? = null
-            etSearch.addTextChangedListener {
+            fmsEtSearch.addTextChangedListener {
                 job?.cancel()
                 job = MainScope().launch {
                     delay(Constants.SEARCH_REQUEST_DELAY)
@@ -103,7 +104,7 @@ class MusicSearchFragment : Fragment() {
 
     private fun setupRV() {
         _trackAdapter = TrackListAdapter()
-        binding.rvSearchMusic.apply {
+        binding.fmsRvSearchMusic.apply {
             adapter = trackAdapter
             layoutManager = LinearLayoutManager(activity)
         }
