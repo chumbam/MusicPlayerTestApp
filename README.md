@@ -1,5 +1,5 @@
 # MusicPlayerTestApp
-This is a pet app for my portfolio. Stack: MVVM, Retrofit(with dependency), Glide, Coroutines, RxJava, Exo Playeer(+Visualizer), JetpackNavigation, RecycleView. A music player with a simple design.
+This is a pet app for my portfolio. Stack: MVVM, Retrofit(with dependency), Glide, Coroutines, RxJava, Exo Playeer(+Visualizer),Dagger(Hilt), JetpackNavigation, RecycleView. A music player with a simple design.
 
 ![image](https://user-images.githubusercontent.com/90706179/171598797-df768822-2311-4b16-9bcb-45d3a9dfcd9c.png)
 
