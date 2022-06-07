@@ -2,6 +2,7 @@ package ru.isaev.musicplayertestapp.ui
 
 import android.Manifest
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.activity.viewModels
@@ -17,7 +18,6 @@ import ru.isaev.musicplayertestapp.databinding.ActivityMainBinding
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     val viewModel: MainViewModel by viewModels()
 
@@ -35,7 +35,13 @@ class MainActivity : AppCompatActivity() {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                 }
 
-                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {}
+                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Визуализатор отключен",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
 
                 override fun onPermissionRationaleShouldBeShown(
                     p0: PermissionRequest?,

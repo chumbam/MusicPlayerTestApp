@@ -13,7 +13,6 @@ import ru.isaev.musicplayertestapp.utils.Converter
 
 class TrackListAdapter : RecyclerView.Adapter<TrackListAdapter.TrackViewHolder>() {
 
-
     private val differCallback = object : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.previewUrl == newItem.previewUrl
@@ -53,7 +52,6 @@ class TrackListAdapter : RecyclerView.Adapter<TrackListAdapter.TrackViewHolder>(
                 rvTrackName.isSelected = true
                 itemView.setOnClickListener {
                     onItemClickListener?.let { it(song) }
-
                 }
             }
         }

@@ -1,9 +1,12 @@
 package ru.isaev.musicplayertestapp.ui.fragment
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +33,7 @@ class MusicPlayerFragment : Fragment() {
 
     private var _binding: FragmentMusicPlayerBinding? = null
     private val binding
-    get() = checkNotNull(_binding){ "View binding is not initialized"}
+        get() = checkNotNull(_binding) { "View binding is not initialized" }
     private val viewModel: MainViewModel by activityViewModels()
     private val args: MusicPlayerFragmentArgs by navArgs()
     lateinit var exoPlayer: ExoPlayer
@@ -86,22 +89,22 @@ class MusicPlayerFragment : Fragment() {
         }
     }
 
-    private fun configSeekBar() = lifecycleScope.launch (Dispatchers.Main.immediate) {
+    private fun configSeekBar() = lifecycleScope.launch(Dispatchers.Main.immediate) {
         val totalDuration = exoPlayer.duration
         var currentPos = 0
-            delay(600)
-            binding.fmpSeekBar.max = exoPlayer.duration.toInt()
+        delay(1500)
+        binding.fmpSeekBar.max = exoPlayer.duration.toInt()
 
-            binding.fmpSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {}
-                override fun onStartTrackingTouch(p0: SeekBar?) {}
+        binding.fmpSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {}
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
 
-                override fun onStopTrackingTouch(p0: SeekBar?) {
-                    exoPlayer.seekTo(binding.fmpSeekBar.progress.toLong())
-                }
-            })
-            val endTime = Converter.getMinutes(exoPlayer.duration)
-            binding.fmpEndTime.text = endTime
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                exoPlayer.seekTo(binding.fmpSeekBar.progress.toLong())
+            }
+        })
+        val endTime = Converter.getMinutes(exoPlayer.duration)
+        binding.fmpEndTime.text = endTime
 
         while (totalDuration < currentPos) {
             delay(500)
@@ -110,9 +113,9 @@ class MusicPlayerFragment : Fragment() {
         }
     }
 
-    private fun handleCurrentTrackTime(){
+    private fun handleCurrentTrackTime() {
         handler = Handler(Looper.getMainLooper())
-        handler?.postDelayed(object: Runnable{
+        handler?.postDelayed(object : Runnable {
             override fun run() {
                 val currTime = Converter.getMinutes(exoPlayer.currentPosition)
                 binding.fmpStartTime.text = currTime
@@ -122,11 +125,15 @@ class MusicPlayerFragment : Fragment() {
     }
 
     private fun configVisualization() {
-        lifecycleScope.launch(Dispatchers.Main.immediate) {
-            val sessionId = exoPlayer.audioSessionId
-            if (sessionId != -1){
-                binding.apply {
-                    fmpBv.setAudioSessionId(sessionId)
+        if (activity?.checkSelfPermission(Manifest.permission.RECORD_AUDIO) !=
+            PackageManager.PERMISSION_DENIED
+        ) {
+            lifecycleScope.launch(Dispatchers.Main.immediate) {
+                val sessionId = exoPlayer.audioSessionId
+                if (sessionId != -1) {
+                    binding.apply {
+                        fmpBv.setAudioSessionId(sessionId)
+                    }
                 }
             }
         }
